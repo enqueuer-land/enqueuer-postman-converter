@@ -1,0 +1,28 @@
+name: Collection
+id: 6e530597-0465-4570-aeab-b4c072a2e92b
+subscriptions: []
+publishers: []
+requisitions:
+    -   name: Google
+        subscriptions: []
+        publishers:
+            -   type: http
+                url: 'http://{{google}}.com.br'
+                method: POST
+                payload: "{\n\t\"body\": true\n}"
+                headers:
+                    header-key: header-value
+                    Content-Type: application/json
+                authentication:
+                    basic:
+                        password: password
+                        username: user
+                onInit:
+                    script: 'let publisherPre;'
+                onMessageReceived: null
+        requisitions: []
+onInit:
+    script: 'let onInit;'
+    store:
+        google: '`google`'
+        number: '`2`'

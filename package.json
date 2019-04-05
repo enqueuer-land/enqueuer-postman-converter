@@ -1,0 +1,68 @@
+{
+  "name": "enqueuer-postman-converter",
+  "version": "0.0.1",
+  "description": "Enqueuer xml parser plugin",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "unitTest": "node_modules/.bin/jest",
+    "all": "npm run clean && npm run lint && npm run build && npm run unitTest",
+    "lint": "node_modules/.bin/tslint --project tsconfig.json",
+    "prepublishOnly": "npm run all",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enqueuer-land/enqueuer-postman-converter.git"
+  },
+  "keywords": [
+    "enqueuer",
+    "nqr",
+    "postman",
+    "converter",
+    "plugin"
+  ],
+  "author": "Virgs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enqueuer-land/enqueuer-postman-converter/issues"
+  },
+  "homepage": "https://github.com/enqueuer-land/enqueuer-postman-converter#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.9.4",
+    "@types/yamljs": "^0.2.30",
+    "jest": "^24.5.0",
+    "ts-jest": "^24.0.0",
+    "ts-node": "^8.0.2",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
+  },
+  "dependencies": {
+    "enqueuer": "^4.5.2",
+    "yamljs": "^0.3.0"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "statements": 95,
+        "branches": 95,
+        "functions": 95,
+        "lines": 95
+      }
+    },
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": ".*\\.test\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  }
+}

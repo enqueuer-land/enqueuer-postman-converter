@@ -1,0 +1,94 @@
+{
+  "info": {
+    "_postman_id": "6e530597-0465-4570-aeab-b4c072a2e92b",
+    "name": "Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Google",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "ad2383be-1aa9-49a4-b49f-b8b8e794ae7b",
+            "exec": [
+              "let publisherPre;"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "password",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "user",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "header-key",
+            "value": "header-value",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"body\": true\n}"
+        },
+        "url": {
+          "raw": "http://{{google}}.com.br",
+          "protocol": "http",
+          "host": [
+            "{{google}}",
+            "com",
+            "br"
+          ]
+        }
+      }
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "7955eff0-4714-49cf-a324-c51497cadc85",
+        "type": "text/javascript",
+        "exec": [
+          "let onInit;"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "77e59094-9650-4a0b-8740-6db62932cbb8",
+      "key": "google",
+      "value": "google",
+      "type": "string"
+    },
+    {
+      "id": "7a5868f5-6374-4bb1-b65e-43a93575d91f",
+      "key": "number",
+      "value": "2",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+import: <<postman://postman_collection2.json>>
+onFinish:
+    script: publisher = requisition.requisitions[0].publishers[0];
+    assertions:
+        -   expect: store.google
+            toBeEqualTo:  `google`
+        -   expect: requisition.requisitions.length
+            toBeEqualTo: 1
+        -   expect: publisher.url
+            toBeEqualTo: `http://google.com.br`
+        -   expect: publisher.method
+            toBeEqualTo: `POST`
+        -   expect: publisher.headers['header-key']
+            toBeEqualTo: `header-value`
+        -   expect: publisher.payload
+            toBeEqualTo:
+                body: true
