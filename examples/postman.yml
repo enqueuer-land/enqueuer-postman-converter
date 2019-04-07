@@ -35,7 +35,6 @@ requisitions:
 -   import: <<postman://postman_collection2.json>>
     onFinish:
         script: |-
-            virgs = requisition.requisitions[0].publishers[0];
 #            publisher = requisition.requisitions[0].publishers[0];
 #            delete publisher.parent;
             console.log( 'requisitions length' + JSON.stringify(requisition.requisitions.length, null, 2));
