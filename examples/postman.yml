@@ -34,7 +34,10 @@ requisitions:
 
 -   import: <<postman://postman_collection2.json>>
     onFinish:
-        script: publisher = requisition.requisitions[0].publishers[0];
+        script: |-
+            publisher = requisition.requisitions[0].publishers[0];
+            delete publisher.parent;
+            console.log(JSON.stringify(publisher, null, 2));
         assertions:
             -   expect: requisition.name
                 toBeEqualTo:  `Collection`
