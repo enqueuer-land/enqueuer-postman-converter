@@ -23,4 +23,4 @@ script:
 - npm run build
 - npm run unitTest
 - npm link
-- nqr -a examples/postman.yml -l `pwd` -b trace
+- nqr -a examples/postman.yml -l `pwd`

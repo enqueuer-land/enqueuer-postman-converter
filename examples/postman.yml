@@ -1,11 +1,8 @@
 requisitions:
 -   module: <<postman://postman_collection.json>>
     onFinish:
-        script: |-
-            publisher = requisition.module.requisitions[0].publishers[0];
-            subscription = requisition.module.requisitions[0].subscriptions[0];
         assertions:
-            -   expect: subscription
+            -   expect: requisition.module.requisitions[0].subscriptions[0]
                 toBeEqualTo:
                     name: 'Request Name - example'
                     type: http
@@ -17,7 +14,7 @@ requisitions:
                             header-response: header-response
                         status: 200
                         payload: "{\n    \"example\": \"response\"\n}"
-            -   expect: publisher
+            -   expect: requisition.module.requisitions[0].publishers[0]
                 toBeEqualTo:
                     type: http
                     url: 'http://url.com/endpoint?param-key=param-value'
