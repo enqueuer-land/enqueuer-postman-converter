@@ -1,9 +1,9 @@
 import {RequisitionModel} from 'enqueuer/js/models/inputs/requisition-model';
 import {Event} from 'enqueuer/js/models/events/event';
 import * as postman from './postman-types';
-import {Variable} from './postman-types';
 import {PublisherModel} from 'enqueuer/js/models/inputs/publisher-model';
 import {SubscriptionModel} from 'enqueuer/js/models/inputs/subscription-model';
+import {PostmanEventExtractor} from './postman-event-extractor';
 
 export class EnqueuerRequisitionMapper {
     public convert(postmanCollection: postman.Collection): RequisitionModel {
@@ -14,51 +14,16 @@ export class EnqueuerRequisitionMapper {
             publishers: [],
             requisitions: this.createRequisitions(postmanCollection)
         };
-        const onInit = this.extractOnInitEvent(postmanCollection);
+        const onInit = new PostmanEventExtractor(postmanCollection).extractOnInitEvent();
         if (onInit !== undefined) {
             requisition.onInit = onInit;
         }
-        const onFinish = this.extractOnFinishEvent(postmanCollection);
+        const onFinish = new PostmanEventExtractor(postmanCollection).extractOnFinishEvent();
         if (onFinish !== undefined) {
             requisition.onFinish = onFinish;
         }
         // @ts-ignore
         return requisition;
-    }
-
-    private extractOnInitEvent(element: { event?: postman.Event[], variable?: Variable[] }): Event | undefined {
-        let event: any = this.extractEvent('prerequest', element);
-        if (element.variable) {
-            if (!event) {
-                event = {};
-            }
-            event.store = {};
-            (element.variable || [])
-                .forEach(element => event!.store![element.key] = `\`${element.value}\``);
-        }
-        return event;
-    }
-
-    private extractOnMessageReceivedEvent(element: { event?: postman.Event[] }): Event | undefined {
-        return this.extractEvent('test', element);
-    }
-
-    private extractOnFinishEvent(element: { event?: postman.Event[] }): Event | undefined {
-        return this.extractEvent('test', element);
-    }
-
-    private extractEvent(eventName: string, element: { event?: postman.Event[] }): Event | undefined {
-        if (element.event) {
-            const event = element.event
-                .find((event: postman.Event) => event.listen === eventName, {});
-            if (event && Array.isArray(event.script.exec) && event.script.exec.length > 0) {
-                // @ts-ignore
-                return {
-                    script: event.script.exec.join('; ')
-                };
-            }
-
-        }
     }
 
     private createFolder(folder: postman.Folder): RequisitionModel {
@@ -68,11 +33,11 @@ export class EnqueuerRequisitionMapper {
             publishers: [],
             requisitions: this.createRequisitions(folder)
         };
-        const onInit = this.extractOnInitEvent(folder);
+        const onInit = new PostmanEventExtractor(folder).extractOnInitEvent();
         if (onInit !== undefined) {
             result.onInit = onInit;
         }
-        const onFinish = this.extractOnFinishEvent(folder);
+        const onFinish = new PostmanEventExtractor(folder).extractOnFinishEvent();
         if (onInit !== undefined) {
             result.onFinish = onFinish;
         }
@@ -99,7 +64,9 @@ export class EnqueuerRequisitionMapper {
         const requisition: any = {
             name: item.name,
             subscriptions: (item.response || []).map(response => this.createSubscription(response)),
-            publishers: [this.createPublisher(item.request, this.extractOnInitEvent(item), this.extractOnMessageReceivedEvent(item))],
+            publishers: [this.createPublisher(item.request,
+                new PostmanEventExtractor(item).extractOnInitEvent(),
+                new PostmanEventExtractor(item).extractOnMessageReceivedEvent())],
             requisitions: []
         };
         if (item.id) {
@@ -132,7 +99,7 @@ export class EnqueuerRequisitionMapper {
         if (onInit !== undefined) {
             publisher.onInit = onInit;
         }
-        if (onInit !== undefined) {
+        if (onMessageReceived !== undefined) {
             publisher.onMessageReceived = onMessageReceived;
         }
         return publisher;

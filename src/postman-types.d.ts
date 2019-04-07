@@ -1,5 +1,5 @@
 export interface Event {
-    listen: 'test' | 'prerequest';
+    listen: 'test' | 'prerequest' | string;
     script: {
         exec: string[]
     };
