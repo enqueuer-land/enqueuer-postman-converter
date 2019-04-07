@@ -37,8 +37,7 @@ requisitions:
         script: |-
 #            publisher = requisition.requisitions[0].publishers[0];
 #            delete publisher.parent;
-            console.log( 'requisitions length' + JSON.stringify(requisition.requisitions.length, null, 2));
-            console.log( 'publishers length' + JSON.stringify(requisition.publishers.length, null, 2));
+            console.log( 'requisitions -> ' + JSON.stringify(requisition, null, 2));
         assertions:
             -   expect: requisition.name
                 toBeEqualTo:  `Collection`
