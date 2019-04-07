@@ -1,7 +1,7 @@
 {
   "name": "enqueuer-postman-converter",
   "version": "0.0.1",
-  "description": "Enqueuer xml parser plugin",
+  "description": "Enqueuer postman converter plugin",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

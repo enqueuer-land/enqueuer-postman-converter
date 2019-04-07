@@ -7,5 +7,6 @@ coverage
 .travis.yml
 .idea/
 examples/
-xml-file.xml
 .DS_Store
+postman_collection.json
+postman_collection2.json
