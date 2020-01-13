@@ -36,7 +36,7 @@
     "@types/yamljs": "^0.2.30",
     "jest": "^24.5.0",
     "ts-jest": "^24.0.0",
-    "ts-node": "^8.0.2",
+    "ts-node": "^8.6.2",
     "tslint": "^5.11.0",
     "typescript": "^3.4.1"
   },
