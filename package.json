@@ -30,18 +30,18 @@
   },
   "homepage": "https://github.com/enqueuer-land/enqueuer-postman-converter#readme",
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/jest": "^24.0.11",
-    "@types/node": "^13.1.0",
+    "@types/chai": "^4.2.9",
+    "@types/jest": "^25.1.0",
+    "@types/node": "^13.7.1",
     "@types/yamljs": "^0.2.30",
     "jest": "^24.5.0",
-    "ts-jest": "^24.0.0",
+    "ts-jest": "^25.2.0",
     "ts-node": "^8.6.2",
     "tslint": "^5.11.0",
     "typescript": "^3.4.1"
   },
   "dependencies": {
-    "enqueuer": "^5.0.0",
+    "enqueuer": "^5.0.4",
     "yamljs": "^0.3.0"
   },
   "jest": {
