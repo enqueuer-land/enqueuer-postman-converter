@@ -1,5 +1,5 @@
 requisitions:
--   module: <<postman://postman_collection.json>>
+-   module: <<postman://postman-example.json>>
     onFinish:
         assertions:
             -   expect: requisition.module.requisitions[0].subscriptions[0]
