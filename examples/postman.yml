@@ -31,35 +31,3 @@ requisitions:
                         script: 'preRequestScript = 3; secondline;'
                     onMessageReceived:
                         script: 'test[''value''] = 200;; test[''value''] = 300;'
-
--   import: <<postman://postman_collection2.json>>
-    onFinish:
-        script: |-
-            publisher = requisition.requisitions[0].publishers[0];
-        assertions:
-            -   expect: requisition.name
-                toBeEqualTo:  `Collection`
-            -   expect: requisition.onInit.script
-                toBeEqualTo:  `let onInit;`
-            -   expect: store.google
-                toBeEqualTo:  `google`
-            -   expect: store.number
-                toBeEqualTo:  `2`
-            -   expect: requisition.requisitions.length
-                toBeEqualTo: 1
-            -   expect: requisition.requisitions[0].name
-                toBeEqualTo: `Google`
-            -   expect: publisher.url
-                toBeEqualTo: `http://google.com.br`
-            -   expect: publisher.method
-                toBeEqualTo: `POST`
-            -   expect: publisher.headers['header-key']
-                toBeEqualTo: `header-value`
-            -   expect: publisher.payload
-                toBeEqualTo:
-                    body: true
-            -   expect: publisher.authentication
-                toBeEqualTo:
-                    basic:
-                        password: password
-                        username: user
