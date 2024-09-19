@@ -41,7 +41,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "enqueuer": "^5.1.4",
+    "enqueuer": "^6.0.0",
     "yamljs": "^0.3.0"
   },
   "jest": {
